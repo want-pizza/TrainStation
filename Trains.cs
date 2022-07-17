@@ -96,6 +96,13 @@ namespace TrainStation
                 return price;
             }
         }
+        public int Number
+        {
+            get
+            {
+                return number;
+            }
+        }
         public int Free_Places
         {
             set
