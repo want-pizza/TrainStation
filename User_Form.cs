@@ -33,7 +33,7 @@ namespace TrainStation
         }
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)        //Вибір дати поїздки
         {
-
+            combo_box_time.Enabled = true;
         }
         private void combo_box_time_SelectedIndexChanged(object sender, EventArgs e)        //Вибір часу відправлення
         {
