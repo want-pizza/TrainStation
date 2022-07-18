@@ -29,7 +29,7 @@ namespace TrainStation
         }
         private void combo_box_town_SelectedIndexChanged(object sender, EventArgs e)        //Вибір місця призначення
         {
-
+            dateTimePicker.Enabled = true;
         }
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)        //Вибір дати поїздки
         {
