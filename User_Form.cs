@@ -64,6 +64,7 @@ namespace TrainStation
         private void User_Form_Close(object sender, FormClosedEventArgs e)      //Закриття форми
         {
 
+
         }
     }
 }
