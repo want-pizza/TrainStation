@@ -53,19 +53,21 @@ namespace TrainStation
         int number;
         string town;
         DateTime date;
-        DateTime time;
-        float price;
+        string stops;
+        List<string> time;
         int free_places;
+        int price;
+        
 
-        public Train(int _number, string _town, DateTime _date, DateTime _time, float _price)
+        public Train(int _number, string _town, string _stops, List<string> _time,int _free_places, int _price)
         {
             Random r = new Random();
             number = _number;
             town = _town;
-            date = _date;
+            stops = _stops;
             time = _time;
-            price = _price;
-            free_places = r.Next(1000) + 1;
+            free_places = _free_places;
+            price = _price;          
         }
 
         public string Town

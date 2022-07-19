@@ -67,6 +67,9 @@
     <Compile Include="User_Form.Designer.cs">
       <DependentUpon>User_Form.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Cashier_Form.resx">
+      <DependentUpon>Cashier_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,6 +79,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="User_Form.resx">
+      <DependentUpon>User_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
