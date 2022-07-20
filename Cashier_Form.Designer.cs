@@ -233,7 +233,10 @@
             this.Controls.Add(this.label_new_town);
             this.Controls.Add(this.label_new_stops);
             this.Controls.Add(this.label_new_time);
+            this.MaximumSize = new System.Drawing.Size(820, 784);
+            this.MinimumSize = new System.Drawing.Size(820, 784);
             this.Name = "Cashier_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_free_places)).EndInit();
             this.ResumeLayout(false);

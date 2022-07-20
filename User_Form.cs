@@ -13,6 +13,7 @@ namespace TrainStation
     public partial class User_Form : Form
     {
         List<Train> trains;
+        Train train;
         public User_Form()
         {
             InitializeComponent();
@@ -29,17 +30,32 @@ namespace TrainStation
         }
         private void button_accept_Click(object sender, EventArgs e)        //Кнопка замовити квиток
         {
-
-            MessageBox.Show("");
-            Reset_Form();
+            if (textBox_first_name.Text != "" && textBox_last_name.Text != "" && combo_box_town.Text != "" && combo_box_time.Text != "")
+            {
+                Random random = new Random();
+                MessageBox.Show($"Номер вашого білету: {random.Next(100, 2000)}", "Дякуємо!");
+                Reset_Form();
+            }
+            else
+            {
+                MessageBox.Show("Заповніть усі поля!", "Помилка!");
+            }
         }
         private void combo_box_town_SelectedItemChanged(object sender, EventArgs e)        //Вибір місця призначення
         {
+            list_ticket.Items.Clear();
             dateTimePicker.Enabled = true;
             combo_box_time.Items.Clear();
             combo_box_time.Text = "";
             combo_box_time.Enabled = true;
             SetTimes();
+            dateTimePicker.Value = DateTime.Now;
+            train.Date = dateTimePicker.Value;           
+        }
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            list_ticket.Items.Clear();
+            train.Date = dateTimePicker.Value;
         }
         private void combo_box_time_SelectedIndexChanged(object sender, EventArgs e)        //Вибір часу відправлення
         {
@@ -49,22 +65,27 @@ namespace TrainStation
         {
             foreach(Train t in trains)
             {
-                if(combo_box_town.SelectedItem.ToString()==t.Town)
-                    foreach(string str in t.Time)
+                if (combo_box_town.SelectedItem.ToString() == t.Town)
+                {
+                    foreach (string str in t.Time)
                     {
                         combo_box_time.Items.Add(str);
                     }
+                    train = t;
+                }
             }
         }
         private void Print_Ticket()    //Друк білету
         {
-            /*list_ticket.Items.Add($"Номер потягу: {.number}");
-            list_ticket.Items.Add($"Місце призначення: {.town}");
-            list_ticket.Items.Add($"Дата поїздки: {.date}");
-            list_ticket.Items.Add($"Час відправлення: {.time}");
-            list_ticket.Items.Add($"К-сть вільних місць: {.free_places}");
+            list_ticket.Items.Clear();
+            list_ticket.Items.Add($"Номер потягу: {train.Number}");
+            list_ticket.Items.Add($"Місце призначення: {train.Town}");
+            list_ticket.Items.Add($"Проміжні зупинки: {train.Stops}");
+            list_ticket.Items.Add($"Дата поїздки: {train.Date.Day}.{train.Date.Month}.{train.Date.Year}");
+            list_ticket.Items.Add($"Час відправлення: {combo_box_time.Text}");
+            list_ticket.Items.Add($"К-сть вільних місць: {train.Free_Places}");
             list_ticket.Items.Add("");
-            list_ticket.Items.Add($"Ціна: {.price}");*/
+            list_ticket.Items.Add($"Ціна: {train.Price}");
         }
         private void Reset_Form()       //Метод скидання форми
         {
@@ -76,11 +97,10 @@ namespace TrainStation
             combo_box_time.Text = "";
             combo_box_time.Enabled = false;
             list_ticket.Items.Clear();
-            button_accept.Enabled = false;  
         }
         private void User_Form_Close(object sender, FormClosedEventArgs e)      //Закриття форми
         {
-
+            new Main_Form().Show();
         }
     }
 }

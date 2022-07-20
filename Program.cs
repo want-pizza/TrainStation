@@ -19,13 +19,13 @@ namespace TrainStation
             SetTrains();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new User_Form());
+            Application.Run(new Main_Form());
         }
 
         public static void SetTrains()
         {
             List<string> temp = new List<string>();
-            temp.Add("9:00");
+            temp.Add("9:00");           
             temp.Add("15:00");
             temp.Add("21:00");
             Trains.AddNewTrain(new Train(92, "Київ", "Рівно, Житомир", new List<string>(temp), 90, 320));

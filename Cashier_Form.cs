@@ -58,7 +58,7 @@ namespace TrainStation
         }
         private void Cashier_Form_Close(object sender, FormClosedEventArgs e)      //Закриття форми
         {
-
+            new Main_Form().Show();
         }
     }
 }
