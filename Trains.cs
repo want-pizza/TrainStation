@@ -26,11 +26,11 @@ namespace TrainStation
         DateTime date;
         string stops;
         List<string> time;
-        int free_places;
+        List<int> free_places;
         int price;
         
 
-        public Train(int _number, string _town, string _stops, List<string> _time,int _free_places, int _price)
+        public Train(int _number, string _town, string _stops, List<string> _time,List<int> _free_places, int _price)
         {
             number = _number;
             town = _town;
@@ -87,7 +87,7 @@ namespace TrainStation
                 return number;
             }
         }
-        public int Free_Places
+        public List<int> Free_Places
         {
             get
             {
