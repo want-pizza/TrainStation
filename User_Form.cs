@@ -32,8 +32,16 @@ namespace TrainStation
         {
             if (textBox_first_name.Text != "" && textBox_last_name.Text != "" && combo_box_town.Text != "" && combo_box_time.Text != "")
             {
-                Random random = new Random();
-                MessageBox.Show($"Номер вашого білету: {random.Next(100, 2000)}", "Дякуємо!");
+                if (train.Free_Places[combo_box_time.SelectedIndex] > 0)
+                {
+                    train.Free_Places[combo_box_time.SelectedIndex] -= 1;
+                    Random random = new Random();
+                    MessageBox.Show($"Номер вашого білету: {random.Next(100, 2000)}", "Дякуємо!");
+                }
+                else
+                {
+                    MessageBox.Show("На жаль усі місця заповнені :(", "Ой");
+                }
                 Reset_Form();
             }
             else
@@ -57,8 +65,10 @@ namespace TrainStation
             if (dateTimePicker.Value < DateTime.Now)
             {
                 dateTimePicker.Value = DateTime.Now;
-                MessageBox.Show("Ви не можете замовити квиток на поїзд, котрий відправився");
             }
+            combo_box_time.Items.Clear();
+            combo_box_time.Text = "";
+            SetTimes();
             list_ticket.Items.Clear();
             train.Date = dateTimePicker.Value;
         }

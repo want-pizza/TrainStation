@@ -89,6 +89,10 @@ namespace TrainStation
         }
         public List<int> Free_Places
         {
+            set 
+            { 
+                free_places = value; 
+            }
             get
             {
                 return free_places;
