@@ -54,6 +54,11 @@ namespace TrainStation
         }
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
+            if(dateTimePicker.Value < DateTime.Now )
+            {
+                dateTimePicker.Value = DateTime.Now;
+                MessageBox.Show("Ви не можете замовити квиток на поїзд, котрий відправився");
+            }
             list_ticket.Items.Clear();
             train.Date = dateTimePicker.Value;
         }
