@@ -54,7 +54,7 @@ namespace TrainStation
         }
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            if(dateTimePicker.Value < DateTime.Now )
+            if (dateTimePicker.Value < DateTime.Now)
             {
                 dateTimePicker.Value = DateTime.Now;
                 MessageBox.Show("Ви не можете замовити квиток на поїзд, котрий відправився");
@@ -74,6 +74,20 @@ namespace TrainStation
                 {
                     foreach (string str in t.Time)
                     {
+                        char[] temp = new char[4];
+                        int k = 0;
+                        for(int i = 0; i < str.Length; i++, k++)
+                        {
+                            if (str[i] != ':')
+                            {
+                                temp[i] = str[i];
+                            }
+                            else
+                            {
+                                k--;
+                            }
+                        }
+                        if(DateTime.Now.Hour*100+DateTime.Now.Minute <= Convert.ToInt32(temp)) 
                         combo_box_time.Items.Add(str);
                     }
                     train = t;
