@@ -102,7 +102,7 @@ namespace TrainStation
             list_ticket.Items.Add($"Проміжні зупинки: {train.Stops}");
             list_ticket.Items.Add($"Дата поїздки: {train.Date.Day}.{train.Date.Month}.{train.Date.Year}");
             list_ticket.Items.Add($"Час відправлення: {combo_box_time.Text}");
-            list_ticket.Items.Add($"К-сть вільних місць: {train.Free_Places}");
+            list_ticket.Items.Add($"К-сть вільних місць: {train.Free_Places[combo_box_time.SelectedIndex]}");
             list_ticket.Items.Add("");
             list_ticket.Items.Add($"Ціна: {train.Price}");
         }

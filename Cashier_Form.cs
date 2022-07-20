@@ -13,6 +13,7 @@ namespace TrainStation
     partial class Cashier_Form : Form
     {
         List<string> times = new List<string>();
+        List<int> places = new List<int>();
         public Cashier_Form()
         {
             InitializeComponent();
@@ -36,7 +37,11 @@ namespace TrainStation
         {
             if(textBox_number.Text != "" && textBox_town.Text != "" && textBox_stops.Text != "" && list_times.Items.Count > 0 && textBox_price.Text != "")
             {
-                Trains.AddNewTrain(new Train(Convert.ToInt32(textBox_number.Text), textBox_town.Text, textBox_stops.Text, new List<string>(times), (int)numericUpDown_free_places.Value, Convert.ToInt32(textBox_price.Text)));
+                for(int i = 0; i < times.Count; i++)
+                {
+                    places.Add((int)numericUpDown_free_places.Value);
+                }
+                Trains.AddNewTrain(new Train(Convert.ToInt32(textBox_number.Text), textBox_town.Text, textBox_stops.Text, new List<string>(times), new List<int>(places), Convert.ToInt32(textBox_price.Text)));
                 Reset_Form();
             }
             else
