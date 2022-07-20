@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace TrainStation
 {
+
     class Trains
     {
-        List<Train> trains = new List<Train>();
-        public List<Train> Sorting_by_Town(string _town)
+        static List<Train> trains = new List<Train>();
+        static public void AddNewTrain(Train train) { trains.Add(train); }
+        static public List<Train> GetTrains
+        {
+            get
+            {
+                return trains;
+            }
+        }
+        static public List<Train> Sorting_by_Town(string _town)
         {
             List<Train> temp = new List<Train>();
             foreach (Train t in trains)
@@ -21,32 +30,22 @@ namespace TrainStation
             }
             return temp;
         }
-        public List<Train> Sorting_by_Town_and_Date(string _town, DateTime _date)
-        {
-            List<Train> temp = new List<Train>();
-            List<Train> _trains = Sorting_by_Town(_town);
-            foreach (Train t in _trains)
-            {
-                if (t.Date == _date)
-                {
-                    temp.Add(t);
-                }
-            }
-            return temp;
-        }
-        public List<Train> Sorting_by_Town_and_DateTime(string _town, DateTime _date, DateTime _time)
-        {
-            List<Train> temp = new List<Train>();
-            List<Train> _trains = Sorting_by_Town_and_Date(_town, _date);
-            foreach (Train t in _trains)
-            {
-                if (t.Time == _time)
-                {
-                    temp.Add(t);
-                }
-            }
-            return temp;
-        }
+        //static public List<Train> Sorting_by_Town_and_Date(string _town, string _time)
+        //{
+        //    List<Train> temp = new List<Train>();
+        //    List<Train> _trains = Sorting_by_Town(_town);
+        //    foreach (Train t in _trains)
+        //    {
+        //        foreach (string i in t.Time)
+        //        {
+        //            if (_time == i)
+        //            {
+        //                temp.Add(t);
+        //            }
+        //        }
+        //    }
+        //    return temp;
+        //}
     }
     class Train
     {
@@ -84,7 +83,7 @@ namespace TrainStation
                 return date;
             }
         }
-        public DateTime Time
+        public List<string> Time
         {
             get
             {

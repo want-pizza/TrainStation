@@ -12,10 +12,16 @@ namespace TrainStation
 {
     public partial class User_Form : Form
     {
+        List<Train> trains;
         public User_Form()
         {
             InitializeComponent();
             FormClosed += User_Form_Close;
+            trains = Trains.GetTrains;
+            foreach(Train t in trains)
+            {
+                combo_box_town.Items.Add(t.Town);
+            }
         }
         private void button_reset_Click(object sender, EventArgs e)     //Кнопка скинути форму
         {
@@ -27,17 +33,28 @@ namespace TrainStation
             MessageBox.Show("");
             Reset_Form();
         }
-        private void combo_box_town_SelectedIndexChanged(object sender, EventArgs e)        //Вибір місця призначення
+        private void combo_box_town_SelectedItemChanged(object sender, EventArgs e)        //Вибір місця призначення
         {
             dateTimePicker.Enabled = true;
-        }
-        private void dateTimePicker_ValueChanged(object sender, EventArgs e)        //Вибір дати поїздки
-        {
+            combo_box_time.Items.Clear();
+            combo_box_time.Text = "";
             combo_box_time.Enabled = true;
+            SetTimes();
         }
         private void combo_box_time_SelectedIndexChanged(object sender, EventArgs e)        //Вибір часу відправлення
         {
             Print_Ticket();
+        }
+        private void SetTimes()
+        {
+            foreach(Train t in trains)
+            {
+                if(combo_box_town.SelectedItem.ToString()==t.Town)
+                    foreach(string str in t.Time)
+                    {
+                        combo_box_time.Items.Add(str);
+                    }
+            }
         }
         private void Print_Ticket()    //Друк білету
         {

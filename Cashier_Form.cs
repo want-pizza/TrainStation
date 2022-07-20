@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TrainStation
 {
-    public partial class Cashier_Form : Form
+    partial class Cashier_Form : Form
     {
         List<string> times = new List<string>();
         public Cashier_Form()
@@ -36,7 +36,7 @@ namespace TrainStation
         {
             try
             {
-                trains.Add(new Train(Convert.ToInt32(textBox_number.Text), textBox_town.Text, textBox_stops.Text, times, (int)numericUpDown_free_places.Value, Convert.ToInt32(textBox_price.Text)));
+                Trains.AddNewTrain(new Train(Convert.ToInt32(textBox_number.Text), textBox_town.Text, textBox_stops.Text, times, (int)numericUpDown_free_places.Value, Convert.ToInt32(textBox_price.Text)));
                 Reset_Form();
             }
             catch (Exception)
