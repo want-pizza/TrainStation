@@ -74,7 +74,49 @@ namespace TrainStation
                 {
                     foreach (string str in t.Time)
                     {
-                        combo_box_time.Items.Add(str);
+                        char[] temp = str.ToCharArray();
+                        char[] hour = new char[2];
+                        char[] minute = new char[2];
+                        bool b = false;
+                        for (int i = 0; i < 2; i++)
+                        {                            
+                            if (temp[i] != ':')
+                            {
+                                hour[i] = temp[i];
+                            }
+                        }   
+                        for(int i = 0, j = 0; i < 5 && j != 2; i++)
+                        {
+                            if (b)
+                            {
+                                minute[j] = temp[i];
+                                j++;
+                            }
+                            if (temp[i] == ':')
+                            {
+                                b = true;
+                            }
+                        }
+                        string _hour = new string(hour);
+                        string _minute = new string(minute);
+                        if (!(dateTimePicker.Value.Day > DateTime.Now.Day))
+                        {
+                            if(Convert.ToInt32(_hour) > DateTime.Now.Hour)
+                            {
+                                combo_box_time.Items.Add(str);
+                            }
+                            else if(Convert.ToInt32(_hour) == DateTime.Now.Hour)
+                            {
+                                if(Convert.ToInt32(_minute) > (DateTime.Now.Minute + 1))
+                                {
+                                    combo_box_time.Items.Add(str);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            combo_box_time.Items.Add(str);
+                        }
                     }
                     train = t;
                 }
