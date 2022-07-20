@@ -34,14 +34,14 @@ namespace TrainStation
         }
         private void button_add_train_Click(object sender, EventArgs e)     //Кнопка замовити квиток
         {
-            try
+            if(textBox_number.Text != "" && textBox_town.Text != "" && textBox_stops.Text != "" && list_times.Items.Count > 0 && textBox_price.Text != "")
             {
                 Trains.AddNewTrain(new Train(Convert.ToInt32(textBox_number.Text), textBox_town.Text, textBox_stops.Text, new List<string>(times), (int)numericUpDown_free_places.Value, Convert.ToInt32(textBox_price.Text)));
                 Reset_Form();
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Неправильно заповнені дані", "Упс!");
+                MessageBox.Show("Заповніть усі поля!", "Помилка!");
             }
             
         }
